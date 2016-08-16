@@ -9,8 +9,7 @@
     "build": "npm run clean && npm run build:webpack",
     "build:webpack": "NODE_ENV=production webpack --progress -v --config webpack.config.prod.js",
     "live": "cd public; live-server --port=1234 --entry-file=index.html",
-    "hmr": "npm run clean && npm run hmr:start",
-    "hmr:start": "NODE_ENV=development webpack-dev-server --hot --inline"
+    "hmr": "NODE_ENV=development webpack-dev-server --hot --inline"
   },
   "author": "Diver",
   "license": "ISC",
