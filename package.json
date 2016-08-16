@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf public",
+
     "watch": "watchify src/app.js -o public/bundle.js -t [ babelify --presets [ react es2015 ] ]",
+    "live": "cd public; live-server --port=1234 --entry-file=index.html",
+
     "build": "npm run clean && npm run build:webpack",
     "build:webpack": "NODE_ENV=production webpack --progress -v --config webpack.config.prod.js",
-    "live": "cd public; live-server --port=1234 --entry-file=index.html",
     "hmr": "NODE_ENV=development webpack-dev-server --hot --inline"
   },
   "author": "Diver",

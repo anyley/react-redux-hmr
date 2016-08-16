@@ -9,7 +9,7 @@ const mapDispatchToProps = dispatch => ({
     showAddDeck: () => dispatch(showAddDeck())
 });
 
-
+// TODO: переделать в React.createClass
 const Toolbar = ({ deckId, showAddDeck }) => {
     let deskTools = deckId ? (<div>
         <Link className="ui button" to={`/deck/${deckId}/new`}> New Card </Link>
