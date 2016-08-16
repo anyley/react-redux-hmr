@@ -13,6 +13,15 @@ export const cards = (state, action) => {
     }
 };
 
+// TODO: не забыть удалить
+export const textArea = (state, action) => {
+    switch (action.type) {
+        case 'SAVE_TEXT_AREA':
+            return action.data;
+        default:
+            return state || "DEFAULT";
+    }
+};
 
 export const decks = (state, action) => {
     switch (action.type) {

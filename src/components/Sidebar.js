@@ -1,29 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from 'react-redux';
-import { addDeck, showAddDeck, hideAddDeck } from '../actions';
-import { Link } from 'react-router';
+import {connect} from 'react-redux';
+import {Link} from 'react-router';
+import {saveTextArea, addDeck, showAddDeck, hideAddDeck} from '../actions';
 
-
-const mapStateToProps = ({at, decks, addingDeck}) => ({
-    at,
+// TODO: не забыть удалить textArea
+const mapStateToProps = ({textArea, decks, addingDeck}) => ({
+    textArea,
     decks,
     addingDeck
 });
 
-
+// TODO: не забыть удалить saveTextArea
 const mapDispatchToProps = dispatch => ({
-    addDeck:  name => dispatch(addDeck(name)),
-    showAddDeck:() => dispatch(showAddDeck()),
-    hideAddDeck:() => dispatch(hideAddDeck())
+    saveTextArea(text) { dispatch(saveTextArea(text)) },
+    addDeck(name) { dispatch(addDeck(name)) },
+    showAddDeck() { dispatch(showAddDeck()) },
+    hideAddDeck() { dispatch(hideAddDeck()) }
 });
 
 
 const Sidebar = React.createClass({
     componentDidUpdate() {
         let el = ReactDOM.findDOMNode(this.refs.add);
-        let at = ReactDOM.findDOMNode(this.refs.at);
-        this.props.at = at.value();
         if (el) el.focus();
     },
 
@@ -32,18 +31,21 @@ const Sidebar = React.createClass({
 
         return (
             <div className="ui visible left vertical sidebar menu">
-                <h2> All Decks 1: </h2>
-                <div>
-                <textarea ref="ta" defaultValue={props.at + '...'}></textarea>
-                </div>
+                <h2> All Decks: </h2>
 
-                <button className="ui button" onClick={ e => props.showAddDeck() }> New Deck </button>
+                {/*TODO: не забыть удалить*/}
+                <textarea ref="ta" defaultValue={props.textArea || 'default' + '...'}
+                    onChange={e => this.saveTextArea()} />
+
+                <button className="ui button" onClick={ e => props.showAddDeck() }>
+                    New Deck
+                </button>
 
                 <ul>
                     {props.decks.map((deck, i) =>
                         <li key={i}>
                             <Link className="ui button" to={`/deck/${deck.id}`}>
-                                 {deck.name}
+                                {deck.name}
                             </Link>
                         </li>
                     )}
@@ -53,10 +55,17 @@ const Sidebar = React.createClass({
         );
     },
 
+    // TODO: не забыть удалить
+    saveTextArea(e) {
+        let ta = ReactDOM.findDOMNode(this.refs.ta);
+        console.log(ta.value);
+        this.props.saveTextArea(ta.value);
+    },
+
     createDeck(e) {
         if (e.which !== 13) return;
 
-        var name = ReactDOM.findDOMNode(this.refs.add).value;
+        const name = ReactDOM.findDOMNode(this.refs.add).value;
         this.props.addDeck(name);
         this.props.hideAddDeck();
     }
