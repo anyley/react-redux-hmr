@@ -17,7 +17,7 @@ const Toolbar = ({ deckId, showAddDeck }) => {
     </div>) : null;
 
     return (<div className="ui fixed main menu">
-        <button className="ui button" onClick={showAddDeck}> New Deck 3 </button>
+        <button className="ui button" onClick={showAddDeck}> New Deck 1 </button>
         { deskTools }
     </div>);
 };

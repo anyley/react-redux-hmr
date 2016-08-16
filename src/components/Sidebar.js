@@ -5,7 +5,8 @@ import { addDeck, showAddDeck, hideAddDeck } from '../actions';
 import { Link } from 'react-router';
 
 
-const mapStateToProps = ({decks, addingDeck}) => ({
+const mapStateToProps = ({at, decks, addingDeck}) => ({
+    at,
     decks,
     addingDeck
 });
@@ -20,7 +21,9 @@ const mapDispatchToProps = dispatch => ({
 
 const Sidebar = React.createClass({
     componentDidUpdate() {
-        var el = ReactDOM.findDOMNode(this.refs.add);
+        let el = ReactDOM.findDOMNode(this.refs.add);
+        let at = ReactDOM.findDOMNode(this.refs.at);
+        this.props.at = at.value();
         if (el) el.focus();
     },
 
@@ -29,8 +32,10 @@ const Sidebar = React.createClass({
 
         return (
             <div className="ui visible left vertical sidebar menu">
-                <h2> All Decks: </h2>
-                <textarea></textarea>
+                <h2> All Decks 1: </h2>
+                <div>
+                <textarea ref="ta" defaultValue={props.at + '...'}></textarea>
+                </div>
 
                 <button className="ui button" onClick={ e => props.showAddDeck() }> New Deck </button>
 

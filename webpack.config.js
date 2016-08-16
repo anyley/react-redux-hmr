@@ -26,7 +26,7 @@ module.exports = {
         aggregateTimeout: 100
     },
 
-    devtool: 'cheap-inline-module-source-map',
+    devtool: 'eval', // 'cheap-inline-module-source-map',
 
     devServer: {
         contentBase: __dirname + '/public',
@@ -39,9 +39,14 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
+                loader: 'react-hot'
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
                 loader: 'babel',
                 query: {
-                    presets: [ 'es2015', 'react', 'react-hmre' ],
+                    presets: [ 'es2015', 'react' ],
                     plugins: [ 'transform-runtime' ]
                 }
             },

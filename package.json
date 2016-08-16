@@ -1,14 +1,10 @@
 {
-  "name": "r3",
+  "name": "react-redux-hmr",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf public",
-
-    "watch": "watchify src/app.js -o public/bundle.js -t [ babelify --presets [ react es2015 ] ]",
-    "live": "cd public; live-server --port=1234 --entry-file=index.html",
-
     "build": "npm run clean && npm run build:webpack",
     "build:webpack": "NODE_ENV=production webpack --progress -v --config webpack.config.prod.js",
     "hmr": "NODE_ENV=development webpack-dev-server --hot --inline"
@@ -21,31 +17,21 @@
     "babel-plugin-transform-runtime": "^6.12.0",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
-    "babel-runtime": "^6.11.6",
-    "babelify": "^7.3.0",
     "css-loader": "^0.23.1",
-    "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
-    "jade-loader": "^0.8.0",
     "jquery": "^3.1.0",
-    "less": "^2.7.1",
-    "less-loader": "^2.2.3",
-    "live-server": "^1.0.0",
-    "normalize.css": "^4.2.0",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",
+    "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
-    "watchify": "^3.7.0"
+    "webpack": "^1.13.1"
   },
   "devDependencies": {
-    "babel-core": "^6.13.2",
-    "babel-preset-react-hmre": "^1.1.1",
     "react-hot-loader": "^1.3.0",
-    "webpack": "^1.13.1",
     "webpack-dashboard": "0.0.1",
     "webpack-dev-server": "^1.14.1"
   }
