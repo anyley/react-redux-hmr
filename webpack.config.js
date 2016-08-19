@@ -15,7 +15,7 @@ const NODE_ENV        = process.env.NODE_ENV || 'development';
 
 module.exports = {
     context: __dirname + '/src',
-    entry: { app: "./app" },
+    entry: { test: "./test.jsx" },
     output: {
         path: __dirname + "/public",
         filename: "[name].js",
@@ -37,18 +37,9 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'react-hot'
-            },
-            {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel',
-                query: {
-                    presets: [ 'es2015', 'react' ],
-                    plugins: [ 'transform-runtime' ]
-                }
+                loaders: ['react-hot', 'babel'],
             },
             { test: /\.jade$/, loader: 'jade' },
             { test: /\.css$/,  loader: 'style-loader!css-loader' },
